@@ -1,0 +1,20 @@
+      
+      <div class="panel panel-default">
+        <div class="panel-heading" style="border-bottom-color: indigo">
+        <h2 class="form-signin-heading text-center">Login or register to Friends app!</h2>
+        </div>
+        <div class="panel-body">
+            <form>
+            <!-- ng-model directive is the way to transfer data to contoller -->
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="Username" required autofocus ng-model="user">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" required ng-model="pass">
+                <!-- Bind the data from username textfield (use the variable 'user') -->
+                <p>{{user}}</p>
+            <input type="button" class="btn btn-lg btn-success btn-block" value="Login" id="login" ng-click='loginClicked()'>
+            <input type="button" class="btn btn-lg btn-primary btn-block" value="Register" id="register" ng-click='registerClicked()'>
+            </form>
+        </div>
+        <div class="panel-footer text-center text-muted"><small>aNGular company</small></div>
+      </div>

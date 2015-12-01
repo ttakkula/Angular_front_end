@@ -1,0 +1,51 @@
+/* use element selector to select all p elements for this style */
+body {
+    font-family: sans-serif;
+    padding-top: 1em;
+}
+
+p {
+    color: rebeccapurple;
+    font-size: 1.5em;
+}
+
+footer {
+    margin-top: 3em;
+}
+
+footer p {
+    color: lightgray;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+div {
+    color: indigo;
+    font-size: 1em;
+}
+
+/* use class selector to define style for elements */
+
+.munoma {
+    background-color: coral;
+    color: darkred;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.fancy {
+    margin: 3em;
+    color: forestgreen;
+    border: 2px dashed blue;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Use id selector to define style */
+
+#thing {
+    padding: 3em;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: darkgoldenrod
+}
