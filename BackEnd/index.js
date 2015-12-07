@@ -9,6 +9,7 @@ var app = express();
 //======================Middlewares==================================
 
 //Bodyparser json() middleware parses the json object from HTTP POST request
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.use(function(req,res,next){
