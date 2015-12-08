@@ -34,9 +34,9 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location,
                 password:$scope.pass
             }
             
-            var waitPromise = loginFactory.startRegister(temp);
+            var response = loginFactory.startRegister(temp);
             //Wait for the response from server
-            waitPromise.then(function(data){
+            response.then(function success(data){
                 console.log('Success!');
                 var message = '<strong>Success!</strong> New user added to Friends app!';
                 Flash.create('success', message, 'custom-class');

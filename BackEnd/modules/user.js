@@ -11,9 +11,9 @@ var express = require("express");
 
 var router = express.Router();
 
-router.get('/:username',function(req,res){
+router.get('/',function(req,res){
     query.getFriendsByUsername(req,res);
-})
+});
 
 /**
   *This router handles a request to to uri localhost:3000/friends/login

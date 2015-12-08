@@ -121,9 +121,9 @@ exports.registerFriend = function(req,res){
     var friend = new db.Friends(req.body);
     friend.save(function(err){
         if(err){
-            res.send({status:err.message,class:"alert alert-danger show"});
+            res.status(502).send({status:err.message,class:"alert alert-danger show"});
         } else {
-            res.send({status:"Register successful!",class:"alert alert-success show"});
+            res.status(200).send({status:"Register successful!",class:"alert alert-success show"});
         }
     });
 }
@@ -133,12 +133,14 @@ exports.loginFriend = function(req,res){
         username:req.body.username,
         password:req.body.password
     }
-    db.Friends.find(searchObject,function(err,data){
+    db.Friends.findOne(searchObject,function(err,data){
         if(err){
-            res.send(501,{status:err.message})
+            res.send(500,{status:err.message})
         } else {
+            console.log(data);
             //=< 0 means wrong username or password
-            if(data.length > 0){
+            if(data){
+                req.session.kayttaja = data.username;
                 res.send(200,{status:"Ok",class:"alert alert-success show"});
             } else {
                 res.send(401,{status:"Wrong username or password",class:"alert alert-danger show"});
@@ -154,13 +156,18 @@ exports.loginFriend = function(req,res){
 
 exports.getFriendsByUsername = function(req,res){
     
-    var usern = req.params.username.split("=")[1];
-    db.Friends.find({username:usern}).
+    //var usern = req.params.username.split("=")[1];
+    //db.Friends.find({username:usern}).
+    db.Friends.findOne({username:req.session.kayttaja}).
         populate('friends').exec(function(err,data){
-            
             console.log(err);
-            console.log(data[0].friends);
-            res.send(data[0].friends);
+            console.log(data.friends);
+        
+        if(data){
+            res.send(data.friends);
+        }else{
+            res.redirect('/');
+        }
         
         });
 }

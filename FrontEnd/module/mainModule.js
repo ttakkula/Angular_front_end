@@ -7,10 +7,14 @@ var main_module = angular.module('main_module',['ngRoute','ngResource','flash','
 //The $routeProvider object comes from ngRoute module
 main_module.config(function($routeProvider){
     $routeProvider.when('/',{
+        
         templateUrl:'partial_login.html',
         controller:'controllerLogin'
+        
     }).when('/list',{
+        
         templateUrl:'partial_dataView.html',
-        controller:'controllerLogin'
+        controller:'friendDataController'
+        
     });    
 });

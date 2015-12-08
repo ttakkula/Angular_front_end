@@ -13,13 +13,13 @@ main_module.factory('loginFactory',function($resource){
     
     factory.startRegister = function(data){
         console.log(data);
-        // Create a resource for context '/friends/login'
+        // Create a resource for context '/friends/register'
         var req = $resource('/friends/register',{},{'post':{method:'POST'}});
         // Use POST method to send the username and password to above context
         // Note that we return an promise object from here
         return req.post(data).$promise;
     }    
     
-    //Factory must always return and object!!!!
+    //Factory must always return an object!!!!
     return factory;
 })

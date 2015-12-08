@@ -7,9 +7,13 @@
         <link href="/FrontEnd/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
         <link href="/FrontEnd/css/angular-flash.min.css" type="text/css" rel="stylesheet">
     </head>
-    <body>
+    <body style="padding-top: 2em;">
+        <div class="container">
+        <div class="row">        
         <!-- This is a placeholder for our views in this app -->
         <div ng-view></div>
+        </div>
+        </div>
         <script src="/FrontEnd/lib/jquery-2.1.4.min.js"></script>
         <script src="/FrontEnd/lib/angular.min.js"></script>
         <script src="/FrontEnd/lib/angular-flash.min.js"></script>
@@ -18,6 +22,8 @@
         <script src="/FrontEnd/lib/angular-resource.min.js"></script>
         <script src="/FrontEnd/module/mainModule.js"></script>
         <script src="/FrontEnd/controllers/loginController.js"></script>
+        <script src="/FrontEnd/controllers/friendDataController.js"></script>
         <script src="/FrontEnd/factories/loginFactory.js"></script>
+        <script src="/FrontEnd/factories/friendDataFactory.js"></script>
     </body>
 </html>
