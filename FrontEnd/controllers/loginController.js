@@ -21,7 +21,8 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location,
                // code inside this block will be called when success response from server comes
             }, function error(data) {
                 console.log('Fail');
-                $('.error').text('Wrong username or password!');
+                var message = '<strong>Oops!</strong> Wrong username or password!';
+                Flash.create('danger', message, 'custom-class');                
             });
             
         }

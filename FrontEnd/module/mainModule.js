@@ -16,5 +16,21 @@ main_module.config(function($routeProvider){
         templateUrl:'partial_dataView.html',
         controller:'friendDataController'
         
+    })
+    .when('/add',{
+        
+        templateUrl:'partial_addPerson.html',
+        controller:'addPersonController'
+        
+    }).when('/edit',{
+        
+        templateUrl:'partial_editPerson.html',
+        controller:'editController'
+        
+    }).when('/delete',{
+        
+        templateUrl:'partial_deleteView.html',
+        controller:'deleteController'
+        
     });    
 });

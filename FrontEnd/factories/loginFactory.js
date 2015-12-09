@@ -20,6 +20,11 @@ main_module.factory('loginFactory',function($resource){
         return req.post(data).$promise;
     }    
     
+    factory.addPerson = function(data){
+        console.log(data);
+        
+    }
+    
     //Factory must always return an object!!!!
     return factory;
 })

@@ -20,6 +20,7 @@ exports.getAllPersons = function(req,res){
 /**
   *This function saves new person information to our person collection
   */
+/*
 exports.saveNewPerson = function(req,res){
     var personTemp = new db.Person(req.body);
     //Save it to database
@@ -35,6 +36,34 @@ exports.saveNewPerson = function(req,res){
         });
     });
 }
+*/
+
+exports.saveNewPerson = function(req,res){
+    
+    
+    var personTemp = new db.Person(req.body);
+    //Save it to database
+    personTemp.save(function(err,newData){
+        
+        db.Friends.update({username:req.session.kayttaja},
+                          {$push:{'friends':personTemp._id}},
+                          function(err,model){
+            
+            //console.log("SEND REDIRECT!!!!!");
+            //Make a redirect to root context
+            //res.redirect(301,'/persons.html');
+            if(err){
+                
+                res.status(500).json({message:'Fail'});
+            }else{
+                
+                res.status(200).json({data:newData});
+            }
+        });
+     
+    });
+}
+
 
 /**
   *This function deletes one person from our person collection
@@ -157,17 +186,16 @@ exports.loginFriend = function(req,res){
 exports.getFriendsByUsername = function(req,res){
     
     //var usern = req.params.username.split("=")[1];
-    //db.Friends.find({username:usern}).
     db.Friends.findOne({username:req.session.kayttaja}).
         populate('friends').exec(function(err,data){
-            console.log(err);
-            console.log(data.friends);
-        
-        if(data){
-            res.send(data.friends);
-        }else{
-            res.redirect('/');
-        }
+            
+            if(data){
+                res.send(data.friends);
+            }
+            else{
+                
+                res.redirect('/');
+            }
         
         });
 }
