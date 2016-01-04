@@ -57,6 +57,18 @@ app.get("/persons",function(req,res){
 });
 */
 
+// This router checks if client is logged in or not
+app.get('/isLogged',function(req,res){
+    //User is logged in if session contains kayttaja attribute
+    if(req.session.kayttaja){
+        res.status(200).send([{status:'Ok'}]);
+    }
+    else {
+        res.status(401).send([{status:'Unauthorized'}]);
+    }
+});
+
+
 app.get('/logout',function(req,res){
     // Single data deletion
     // req.session.kayttaja = null; 
