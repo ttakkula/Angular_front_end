@@ -1,4 +1,6 @@
 var db = require('./database');
+var jwt = require('jsonwebtoken');
+var server = require('../index');
 
 /**
   *This function gets all documents from person collection
@@ -170,7 +172,9 @@ exports.loginFriend = function(req,res){
             //=< 0 means wrong username or password
             if(data){
                 req.session.kayttaja = data.username;
-                res.send(200,{status:"Ok",class:"alert alert-success show"});
+                //Create the token
+                var token = jwt.sign(data,server.secret,{expiresIn:'2h'});
+                res.send(200,{status:"Ok",class:"alert alert-success show",secret:token});
             } else {
                 res.send(401,{status:"Wrong username or password",class:"alert alert-danger show"});
             }

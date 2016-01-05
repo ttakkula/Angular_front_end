@@ -8,6 +8,10 @@ body {
     box-shadow:         1px 2px 14px 0px rgba(50, 50, 50, 0.58);
 }
 
+table.table-hover tr:hover {
+    cursor: pointer;
+}
+
 table.table-hover tr:hover td:first-child:before {
     content: 'Edit ';
     color: darkgrey;
