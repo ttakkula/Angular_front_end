@@ -1,4 +1,5 @@
 var query = require('./queries');
+var mysql = require('./mysql_module');
 
 /**
   *This file is a router for User resource
@@ -20,7 +21,8 @@ router.get('/',function(req,res){
   */
 
 router.post('/login',function(req,res){
-    query.loginFriend(req,res);
+    //query.loginFriend(req,res);
+    mysql.loginMysqlProc(req,res);
 });
 
 
