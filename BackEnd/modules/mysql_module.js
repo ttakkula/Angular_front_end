@@ -35,9 +35,11 @@ exports.loginMysqlProc = function(req,res){
         if(error){
             res.send(502,{status:error.message});
         } else {
-            
-            if(results.length > 0){
-                req.session.kayttaja = results.username;
+            var test = results[0];
+            if(test.length > 0){
+                req.session.kayttaja = test[0].username;
+                req.session.userid = test[0].user_id;
+                //req.session.kayttaja = results.username;
                 //Create the token
                 var token = jwt.sign(results,server.secret,{expiresIn:'2h'});
                 res.send(200,{status:"Ok",class:"alert alert-success show",secret:token});
@@ -46,4 +48,50 @@ exports.loginMysqlProc = function(req,res){
             }
         }
     });
+}
+
+exports.getFriendsForUserByUsername = function(req,res){
+    connection.query('CALL getFriendsByUsername(?)',[req.session.kayttaja],function(error,results,fields){
+        //console.log(results);
+        if(results.length > 0){
+            var data = results[0];
+            res.send(data);
+        } else {
+            res.redirect('/');
+        }
+    });
+}
+
+exports.registerUser = function(req,res) {
+    connection.query('CALL registerUser(?,?)',[req.body.username,req.body.password], function(error,results,fields){
+        if(error){
+            res.status(502).send({status:error.message,class:"alert alert-danger show"});
+        } else {
+            res.status(200).send({status:"Register successful!",class:"alert alert-success show"});
+        }
+    });
+}
+
+exports.addFriend = function(req,res) {
+    connection.query('CALL addFriend(?,?,?,?)',[req.body.name,
+                                                req.body.address,
+                                                req.body.age,
+                                                req.session.userid],
+     function(error,results,fields){
+            if(error){
+                res.status(500).json({message:'Fail'});
+            }else{
+                res.status(200).json({data:results});
+            }
+    });
+}
+
+exports.updateFriend = function(req,res) {
+    connection.query('UPDATE friends SET name=?, address=?, age=? WHERE _id=?',[req.body.name,req.body.address,req.body.age,req.body.id], function(error,results,fields){
+        if(error){
+            res.status(500).json({message:error});
+        } else {
+            res.status(200).json({message:"Data updated!"})
+        }
+        });
 }

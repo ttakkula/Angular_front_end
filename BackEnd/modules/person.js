@@ -1,6 +1,6 @@
 var express = require("express");
 var db = require('./queries');
-
+var mysql = require('./mysql_module');
 var router = express.Router();
 
 //Handle GET requests for /persons context
@@ -15,11 +15,13 @@ router.get('/:nimi/:username',function(req,res){
 
 //Handle POST requests for /persons context
 router.post('/',function(req,res){
-    db.saveNewPerson(req,res);
+    mysql.addFriend(req,res);
+    //db.saveNewPerson(req,res);
 });
 
 router.put('/',function(req,res){
-    db.updatePerson(req,res);
+    mysql.updateFriend(req,res);
+    //db.updatePerson(req,res);
 });
 
 router.delete('/:id/:username',function(req,res){

@@ -51,7 +51,8 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location,
                // code inside this block will be called when success response from server comes
             }, function error(data) {
                 console.log('Fail');
-                $('.error').text('Register failed');
+                var message = '<strong>OOPS!</strong> Registering failed! Please check both fields and try again.';
+                Flash.create('danger', message, 'custom-class');
             });
                         
         }

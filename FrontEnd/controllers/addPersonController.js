@@ -18,7 +18,6 @@ main_module.controller('addPersonController',function($scope,friendDataFactory,F
             $scope.age = "";
             $scope.email = "";
             $('#save').attr("disabled", false);
-            $location.path('/list').replace();
         },function(error){
             $('#save').attr("disabled", false);
             Flash.create('warning', 'Failed to add friend!', 'custom-class');

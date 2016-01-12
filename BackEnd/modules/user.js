@@ -13,7 +13,8 @@ var express = require("express");
 var router = express.Router();
 
 router.get('/',function(req,res){
-    query.getFriendsByUsername(req,res);
+    mysql.getFriendsForUserByUsername(req,res);
+    //query.getFriendsByUsername(req,res);
 });
 
 /**
@@ -31,7 +32,8 @@ router.post('/login',function(req,res){
   */
 
 router.post('/register',function(req,res){
-    query.registerFriend(req,res);
+    //query.registerFriend(req,res);
+    mysql.registerUser(req,res);
 });
 
 module.exports = router;
