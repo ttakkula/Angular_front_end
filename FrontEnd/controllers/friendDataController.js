@@ -1,5 +1,7 @@
 main_module.controller('friendDataController',function($scope,friendDataFactory,$location){
     
+    $scope.name = "Testi Tapaus";
+    
     console.log('friendDataController loaded');
     
     friendDataFactory.getFriendData(dataCallback);
