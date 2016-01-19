@@ -2,6 +2,8 @@ main_module.controller('friendDataController',function($scope,friendDataFactory,
     
     $scope.name = "Testi Tapaus";
     
+    $scope.temp = ['Kari Salmelainen','Urho Kekkonen','BB-Kaki','Teuvo Hakkarainen','Pappa Smurffi'];
+    
     console.log('friendDataController loaded');
     
     friendDataFactory.getFriendData(dataCallback);
